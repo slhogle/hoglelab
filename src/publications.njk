@@ -1,0 +1,150 @@
+---
+title: Publications
+layout: layouts/base.njk
+---
+<section class="section">
+
+    <div class="container">
+
+        <div class="column">
+            <p class="is-size-2 has-text-weight-bold mb-4">Publications<br></p>
+
+            <p class="is-size-6 mb-4">For a full list see <a href="#allpubs">below</a>. I'll make my best effort to keep this list updated, 
+            but please also check <a target="_blank" href={{ site.googlescholar }}>
+                    <i class="ai ai-google-scholar"></i> Google Scholar</a> 
+            ,<a target="_blank" href="https://orcid.org/{{ site.orcid }}">
+                    <i class="ai ai-orcid"></i> ORCID</a>
+            , and <a target="_blank" href={{ site.researchgate }}>
+                    <i class="ai ai-researchgate"></i> ResearchGate.</a>
+
+                <p class="is-size-3 has-text-weight-bold mb-4">Group Highlights<br></p>
+
+                <div class="columns is-multiline ">
+                    {% for pub in bib %}
+                        {% if pub.highlight == 1 %}
+                            <div class="column is-one-third">
+                                <div class="card">
+                                    <div class="card-image">
+                                        <figure class="image is-4by3">
+                                            {% EleventyImage pub.image, "test", "(min-width: 30em) 50vw, 100vw" %}
+                                        </figure>
+                                    </div>
+                                    <div class="card-content">
+                                        <div class="media">
+                                            <div class="media-content">
+                                                <p class="title is-size-5">
+                                                    {{ pub.shorttitle }}
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        <div class="content is-size-7">
+                                            {{ pub.description | safe }}<br>
+                                        </div>
+
+                                        <div class="content is-size-6">
+                                            {{ pub.authors | safe }}
+                                            <a target="_blank" href="http://doi.org/{{ pub.doi }}">{{ pub.journal }}. {{ pub.reference }}, ({{ pub.year }})</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <p class="is-size-3 has-text-weight-bold mb-4" id="allpubs">All publications<br></p>
+
+                <p class="is-size-6">  
+            &#8225; indicates equal contributions<br>
+            &#9671; indicates corresponding author(s)<br>
+                    <b>Boldface</b> indicates SL Hogle and Ph.D./M.Sc. students formally supervised<br>
+                </p>
+
+            </div>
+            {% set pub_total = 0 %}
+            {% for pub in bib %}
+                {% if pub.preprint == 0 %}
+                    {% set pub_total = pub_total + 1 %}
+                {% endif %}
+            {% endfor %}
+            {% set pub_count = pub_total %}
+
+            {% for pub in bib %}
+                {% if pub.preprint == 0 %}
+                    <div class="column">
+                        <div class="box">
+                            <p class="is-size-6">
+                                {# using safe renders html in bib.json #}
+                            [{{ pub_count }}]
+                            {{ pub.authors | safe }}.
+                            <em>{{ pub.title }}.</em>
+                                {{ pub.journal }},
+                            {{ pub.reference }}
+                            ({{ pub.year }}).
+                            <a target="_blank" href="http://doi.org/{{ pub.doi }}">doi: {{ pub.doi }}</a>
+                                {% if pub.oa %}
+                                    <span class="icon-text has-text-danger">
+                                        <span class="icon has-text-danger">
+                                            <i class="ai ai-open-access"></i>
+                                        </span>
+                                        <span>Open Access</span>
+                                    </span>
+                                {% endif %}
+                            </p>
+                            <br>
+
+                            <div class="columns">
+                                <div class="column is-narrow">
+                                    <span class="icon-text">
+                                        <span class="icon">
+                                            <i class="fas fa-file-pdf"></i>
+                                        </span>
+                                        {# <span>Get PDF</span> #}
+                                        <span>
+                                            <a style="display:inline;" target="_blank" href={{ pub.pdf }}>Get PDF</a>
+                                        </span>
+                                    </span>
+                                </div>
+
+                                <div class="column is-narrow">
+                                    <div class="__dimensions_badge_embed__" data-style="small_rectangle" data-doi="{{ pub.doi }}"></div>
+                                </div>
+
+                                <div class="column is-narrow">
+                                    <div class="altmetric-embed" data-badge-type="1" data-doi="{{ pub.doi }}"></div>
+                                </div>
+
+                                {% if pub.biorxiv %}
+                                    <div class="column is-narrow">
+                                        <span class="icon-text">
+                                            <span class="icon">
+                                                <i class="ai ai-biorxiv"></i>
+                                            </span>
+                                            <span>
+                                                <a style="display:inline;" target="_blank" href="https://www.biorxiv.org/content/{{ pub.biorxiv }}">bioRxiv</a>
+                                            </span>
+                                        </span>
+                                    </div>
+                                {% endif %}
+
+                                {% if pub.eartharxiv %}
+                                    <div class="column is-narrow">
+                                        <span class="icon-text">
+                                            <span class="icon">
+                                                <i class="ai ai-archive"></i>
+                                            </span>
+                                            <span>
+                                                <a style="display:inline;" target="_blank" href="https://doi.org/{{ pub.eartharxiv }}">EarthArXiv</a>
+                                            </span>
+                                        </span>
+                                    </div>
+                                {% endif %}
+
+                            </div>
+                        </div>
+                    </div>
+                    {% set pub_count = pub_count - 1 %}
+                {% endif %}
+            {% endfor %}
+        </div>
+    </section>

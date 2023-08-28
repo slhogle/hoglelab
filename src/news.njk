@@ -1,0 +1,17 @@
+---
+title: News
+layout: layouts/base.njk
+---
+
+<section class="section">
+    <div class="container">
+        <p class="is-size-2 has-text-weight-bold mb-4">News<br></p>
+
+        {% for article in news %}
+            <div class="container mb-4">
+                <p class="is-size-6 has-text-weight-bold">{{ article.date }}<br></p>
+                <p class="is-size-6">{{ article.headline | renderUsingMarkdown | safe }}</p>
+            </div>
+        {% endfor %}
+    </div>
+</section>

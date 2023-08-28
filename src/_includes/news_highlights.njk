@@ -1,0 +1,19 @@
+<section class="news">
+    <article class="message is-link">
+        <div class="message-header">
+            <p>News</p>
+        </div>
+        <div class="message-body">
+            {% for article in news %}
+                {% if loop.index0 < 9 %}
+                    <div class="container mb-4">
+                        <p class="is-size-6 has-text-weight-bold">{{ article.date }}<br></p>
+                        <p class="is-size-6">{{ article.headline | renderUsingMarkdown | safe }}</p>
+                    </div>
+                {% endif %}
+            {% endfor %}
+            <p class="is-size-6 has-text-weight-bold">
+                <a href="/news">... see all News</a>
+            </p>
+        </div>
+    </article>

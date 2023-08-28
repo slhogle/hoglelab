@@ -1,0 +1,23 @@
+@import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css";
+
+.tabs ul {
+    flex-shrink: 1;
+    flex-wrap: wrap;
+    border-bottom-color: transparent;
+}
+
+.image img {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.footer {
+    padding: 0rem 0rem 0rem !important;
+}
+
+body {
+    font-family: 'Atkinson Hyperlegible', sans-serif;
+    padding: 20px;
+}
