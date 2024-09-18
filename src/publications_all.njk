@@ -1,0 +1,112 @@
+---
+title: Publications
+layout: layouts/base.njk
+---
+<section class="section">
+    <div class="container is-max-widescreen">
+        <div class="column">
+            <p class="is-size-3 has-text-weight-bold mb-6">All publications</p>
+
+            <p class="is-size-6 mb-4">See also <a target="_blank" href={{ site.googlescholar }}><i class="ai ai-google-scholar"></i> Google Scholar</a>, <a target="_blank" href="https://orcid.org/{{ site.orcid }}"> <i class="ai ai-orcid"></i> ORCID</a>, and <a target="_blank" href={{ site.researchgate }}><i class="ai ai-researchgate"></i> ResearchGate.</a></p>
+            
+            <p class="is-size-6">&#9671; indicates corresponding author(s), &#8225; indicates equal contributions, <u>Underline</u> indicates supervised Ph.D./M.Sc. students and SLH</p>
+            <hr>
+            {# PREPRINTS AND SUBMITTED PUBLICATIONS #}
+            <div class="block">
+                <p class="is-size-4 has-text-weight-bold mb-4" id="allpubs">Submitted</p>     
+            </div>
+            {% set submit_total = 0 %}
+            {% for pub in bib %}
+                {% if pub.submitted == 1 %}
+                    {% set submit_total = submit_total + 1 %}
+                {% endif %}
+            {% endfor %}
+            {% set submit_count = submit_total %}
+            {% for pub in bib %}
+                {% if pub.submitted == 1 %}
+                    <div class="block">
+                        <div class="block is-size-6">
+                            <p class="is-size-6"><b>[{{ submit_count }}] {{ pub.title }}</b></p> 
+                            <p class="is-size-6">{{ pub.authors | safe }}</p>
+                            <p class="is-size-6"><em>{{ pub.journal }}</em> ({{ pub.year }}) <a target="_blank" href="http://doi.org/{{ pub.preprintdoi }}">doi: {{ pub.preprintdoi }}</a></p>
+                        
+                            <div class="block pt-2">     
+                                {% if pub.preprint == "biorxiv" %}
+                                    <span class="icon-text">
+                                        <span class="icon"><i class="ai ai-biorxiv"></i></span>
+                                        <span><a style="display:inline;" target="_blank" href="https://www.biorxiv.org/content/{{ pub.preprintdoi }}">bioRxiv</a></span>
+                                    </span>
+                                {% endif %}
+                                {% if pub.preprint == "other" %}
+                                    <span class="icon-text">
+                                        <span class="icon"><i class="ai ai-archive"></i></span>
+                                        <span><a style="display:inline;" target="_blank" href="https://doi.org/{{ pub.preprintdoi }}">Preprint</a></span>
+                                    </span>
+                                {% endif %}
+                                <span class="altmetric-embed pl-3" data-badge-type="1" data-doi="{{ pub.preprintdoi }}"></span>
+                                <span class="__dimensions_badge_embed__ pb-3 pl-3" style="display:inline-block;" data-doi="{{ pub.preprintdoi }}" data-style="large_rectangle" data-hide-zero-citations="true" ></span>
+                            </div>
+                        </div>
+                    </div>
+                    {% set submit_count = submit_count - 1 %}
+                {% endif %}
+            {% endfor %}
+            <hr>
+            {# PUBLISHED AND IN PRESS PUBLICATIONS #}
+            <div class="block">
+                <p class="is-size-4 has-text-weight-bold mb-4" id="allpubs">Published</p>
+            </div>
+            {% set pub_total = 0 %}
+            {% for pub in bib %}
+                {% if pub.submitted == 0 %}
+                    {% set pub_total = pub_total + 1 %}
+                {% endif %}
+            {% endfor %}
+            {% set pub_count = pub_total %}
+            {% for pub in bib %}
+                {% if pub.submitted == 0 %}
+                    <div class="block">
+                        <div class="block is-size-6">
+                            <p class="is-size-6"><b>[{{ pub_count }}] {{ pub.title }}</b></p> 
+                            <p class="is-size-6">{{ pub.authors | safe }}</p>
+                            <p class="is-size-6"><em>{{ pub.journal }}</em> ({{ pub.year }}) <a target="_blank" href="http://doi.org/{{ pub.pubdoi }}">doi: {{ pub.pubdoi }}</a></p>
+                            <div class="block pt-2">     
+                                <span class="icon-text">
+                                    <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                                    <a style="display:inline-block;" target="_blank" href={{ pub.pdf }}>Get PDF</a>
+                                </span>
+                                {% if pub.oa == 1 %}
+                                    <span class="icon-text has-text-success-dark">
+                                        <span class="icon has-text-success-dark pl-3"><i class="ai ai-open-access"></i></span>
+                                        <span>Open Access</span>
+                                    </span>
+                                {% endif %}
+                                {% if pub.oa == 0 %}
+                                    <span class="icon-text has-text-danger">
+                                        <span class="icon has-text-danger pl-3"><i class="ai ai-closed-access"></i></span>
+                                        <span>Closed Access</span>
+                                    </span>
+                                {% endif %}
+                                {% if pub.preprint == "biorxiv" %}
+                                    <span class="icon-text">
+                                        <span class="icon pl-3"><i class="ai ai-biorxiv"></i></span>
+                                        <span><a style="display:inline;" target="_blank" href="https://www.biorxiv.org/content/{{ pub.preprintdoi }}">bioRxiv</a></span>
+                                    </span>
+                                {% endif %}
+                                {% if pub.preprint == "other" %}
+                                    <span class="icon-text">
+                                        <span class="icon pl-3"><i class="ai ai-archive"></i></span>
+                                        <span><a style="display:inline;" target="_blank" href="https://doi.org/{{ pub.preprintdoi }}">Preprint</a></span>
+                                    </span>
+                                {% endif %}
+                                <span class="altmetric-embed pl-3" data-badge-type="1" data-doi="{{ pub.pubdoi }}"></span>
+                                <span class="__dimensions_badge_embed__ pb-3 pl-3" style="display:inline-block;" data-doi="{{ pub.pubdoi }}" data-style="large_rectangle" data-hide-zero-citations="true" ></span>
+                            </div>
+                        </div>
+                    </div>
+                    {% set pub_count = pub_count - 1 %}
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</section>

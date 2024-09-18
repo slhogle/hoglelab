@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container is-max-widescreen">
   <nav class="navbar is-spaced is-transparent has-shadow" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
           <a class="navbar-item" href="/"><strong>Hogle Lab @ University of Turku</strong></a>
@@ -15,19 +15,26 @@
         {# <div class="navbar-start"><!-- navbar items --></div> #}
         <div class="navbar-end">
           <a href="/research" class="navbar-item">Research</a>
-          <a href="/publications" class="navbar-item">Publications</a>
+          {# <a href="/publications" class="navbar-item">Publications</a> #}
+          <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link">Publications</a>
+                <div class="navbar-dropdown is-right is-boxed">
+                  <a href="/publications_highlights" class="navbar-item">Highlights</a>
+                  <hr class="navbar-divider">
+                  <a href="/publications_all" class="navbar-item">All publications</a>
+                </div>
+            </div>
+            <a href="/team" class="navbar-item">Team</a>
             <div class="navbar-item has-dropdown is-hoverable">
               <a class="navbar-link">About the lab</a>
                 <div class="navbar-dropdown is-right is-boxed">
-                  <a href="/team" class="navbar-item">Team members</a>
-                  <hr class="navbar-divider">
                   <a href="/philosophy" class="navbar-item">Lab Philosophy</a>
                   <a href="/dei" class="navbar-item">Diversity, Equity, and Inclusion</a>
                   <a href="/coc" class="navbar-item">Code of conduct</a>
-                  <a href="/join" class="navbar-item">Join the team!</a>
+                  <a href="/visit" class="navbar-item">Visit us</a>
                 </div>
             </div>
-          <a href="/contact" class="navbar-item">Contact</a>
+          <a href="/join" class="navbar-item">Join!</a>
         </div>
       </div>
   </nav>

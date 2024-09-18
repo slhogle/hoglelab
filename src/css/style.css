@@ -13,6 +13,11 @@
     max-height: 100%;
 }
 
+.image.is-320x320 {
+    height: 320px;
+    width: 320px;
+}
+
 .footer {
     padding: 0rem 0rem 0rem !important;
 }
