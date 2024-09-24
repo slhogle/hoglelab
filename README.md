@@ -1,4 +1,11 @@
-# Instructions/notes for building lab website
+[![Netlify Status](https://api.netlify.com/api/v1/badges/a3441a5f-8eb5-420f-8ddd-34fec63e989e/deploy-status)](https://app.netlify.com/sites/hoglelab/deploys)
+
+Please note that the following licenses apply:
+
+- Source code is licensed [GPL v3](https://opensource.org/license/gpl-3-0)
+- Site content is licensed [CC BY NC SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)
+
+# Instructions for building lab website
 
 ## Clone Hogle Lab Repo
 
