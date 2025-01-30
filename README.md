@@ -20,7 +20,7 @@ cd YOURDIRNAME
 # This is probably easiest way to delete all the git history.
 # Most likely you don't care about my git history 
 # and want to track your own changes to the template.
-rm .git
+rm -rf .git
 ```
 
 Later you will need to turn this into a git repository to deploy to netlify.

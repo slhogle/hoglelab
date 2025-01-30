@@ -1,11 +1,27 @@
-[
+[   
+   {
+        "date": "11 Feb 2025",
+        "headline": "Shane attends a [BioGeoSCAPES](https://biogeoscapes.org/) International Implementation Committee meeting in Boston, Massachusetts."
+    },
+    {
+        "date": "17 Jan 2025",
+        "headline": "New co-authored paper with Teppo Hiltunen's group [in Nature Ecology & Evolution](https://www.nature.com/articles/s41559-024-02624-0) looking at evolution and resilience in a metacommunity framework."
+    },
+  {
+        "date": "3 Jan 2025",
+        "headline": "Check out Rogier Braakman's [paper in Science Advances](https://www.science.org/doi/full/10.1126/sciadv.adp1949) on cross-feeding interactions between SAR11 and *Prochlorococcus.* Also check out the [press release from MIT News.](https://news.mit.edu/2025/abundant-phytoplankton-feeds-marine-microbe-global-network-0103)"
+    },
+  {
+        "date": "31 Dec 2024",
+        "headline": "Shane has a new [paper in Ecology Letters](https://onlinelibrary.wiley.com/doi/full/10.1111/ele.70033) looking at the contribution of evolution and species sorting to microbial community dynamics."
+    },
     {
         "date": "10 May 2024",
-        "headline": "Shane has a [new paper in MRA](https://journals.asm.org/doi/10.1128/mra.00111-24) announcing 30 closed bacterial genomes."
+        "headline": "Shane has a [new paper in Microbiology Resource Announcements](https://journals.asm.org/doi/10.1128/mra.00111-24) announcing 30 closed bacterial genomes."
     },
     {
         "date": "6 November 2023",
-        "headline": "Shane will attend the international [BioGeoSCAPES](https://biogeoscapes.org/) science planning workshop in Woods Hole, Massachusetts"
+        "headline": "Shane attended the international [BioGeoSCAPES](https://biogeoscapes.org/) science planning workshop in Woods Hole, Massachusetts"
     },
     {
         "date": "16 October 2023",

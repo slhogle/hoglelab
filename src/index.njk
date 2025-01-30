@@ -6,12 +6,22 @@ layout: layouts/base.njk
     <div class="container is-max-widescreen">
         <div class="columns">
             <div class="column is-two-thirds">
-                <p class="is-size-3 has-text-weight-bold mb-4">Welcome to the Hogle Lab!</p>
-                <figure class="image is-3by1"><img src="/images/banner01_3x1.png"></figure>
-                <p class="is-size-6 mb-4 mt-4">We are a research group in the <a href="https://www.utu.fi/en/university/faculty-of-science/biology">Biology Department</a> 
-                at the <a href="https://www.utu.fi/en">University of Turku, Finland.</a></p>
+                <div class="block">
+                    <div class="columns">
+                        <div class="column is-one-third">
+                            <figure class="image is-320by320">
+                                <img class="is-rounded" src="/images/lab_logo.png"/>
+                                <figcaption><center><small><small><small>Image: SL Hogle, CC BY-NC-SA 4.0</small></small></small></center></figcaption>        
+                            </figure>
+                        </div>
+                        <div class="column is-two-thirds">
+                          <p class="is-size-3 has-text-weight-bold mt-6">Welcome to the Hogle Lab!</p>
+                          <p class="is-size-6 mt-6">We are a research group in the <a href="https://www.utu.fi/en/university/faculty-of-science/biology">Biology Department</a> at the <a href="https://www.utu.fi/en">University of Turku, Finland.</a></p>
+                        </div>
+                    </div>
+                </div>
                 <p class="is-size-6 mb-4">We seek to understand how microorganisms interact and how those interaction networks change through time. We are particularly interested in how microbial community dynamics and concurrent evolutionary processes scale to influence community function and, more broadly, fluxes of matter and energy through whole ecosystems. Our work spans a diversity of scales ranging from the cellular to the global, and we employ a plurality of methodologies, including those from classic microbiology, molecular biology, cell physiology, bioinformatics, data science, and modeling. Our collaborative group works with folks from many different disciplines including mathematical ecologists, biogeochemical modelers, chemists, and environmental scientists.</p>
-               <figure class="image is-3by1"><img src="/images/banner02_3x1.png"></figure>           
+               {# <figure class="image is-3by1"><img src="/images/banner02_3x1.png"></figure>            #}
             </div>
             <div class="column">{% include "news_highlights.njk" %}</div>
         </div>   

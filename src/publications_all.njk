@@ -10,11 +10,11 @@ layout: layouts/base.njk
             <p class="is-size-6 mb-4">See also <a target="_blank" href={{ site.googlescholar }}><i class="ai ai-google-scholar"></i> Google Scholar</a>, <a target="_blank" href="https://orcid.org/{{ site.orcid }}"> <i class="ai ai-orcid"></i> ORCID</a>, and <a target="_blank" href={{ site.researchgate }}><i class="ai ai-researchgate"></i> ResearchGate.</a></p>
             
             <p class="is-size-6">&#9671; indicates corresponding author(s), &#8225; indicates equal contributions, <u>Underline</u> indicates supervised Ph.D./M.Sc. students and SLH</p>
-            <hr>
+            {# <hr> #} 
             {# PREPRINTS AND SUBMITTED PUBLICATIONS #}
-            <div class="block">
+            {# <div class="block">
                 <p class="is-size-4 has-text-weight-bold mb-4" id="allpubs">Submitted</p>     
-            </div>
+            </div> #} 
             {% set submit_total = 0 %}
             {% for pub in bib %}
                 {% if pub.submitted == 1 %}
