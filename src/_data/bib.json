@@ -1,5 +1,35 @@
 [
-     {
+    {
+        "title": "Evolution induced state shifts in a long-term microbial community experiment",
+        "authors": "Kivikoski M, Cairns J, <u>Hogle SL</u>, Pausio S, Becks L, Mustonen V<sup>&#9671;</sup>, Hiltunen T<sup>&#9671;</sup>",
+        "journal": "Proceedings of the National Academy of Sciences (PNAS)",
+        "journalshort": null,
+        "reference": "",
+        "year": 2026,
+        "pubdoi": "10.1073/pnas.2533269123",
+        "preprint": "biorxiv",
+        "preprintdoi": "10.1101/2025.10.10.680894v1.full",
+        "news": null,
+        "pdf": "/pdfs/Kivikoski2026-hi.pdf",
+        "oa": 0,
+        "submitted": 0
+    },
+    {
+        "title": "Predator-driven microbial feedback loops promote plant health",
+        "authors": "Li G, Liu T<sup>&#9671;</sup>, Chuai H, Ma H, Yang Z, Xu Y, Li H, Shen Q, Hu F, Geisen S, Jousset A, Wei Z<sup>&#9671;</sup>, <u>Hogle SL</u>",
+        "journal": "Nature Communications",
+        "journalshort": null,
+        "reference": "",
+        "year": 2026,
+        "pubdoi": "10.1038/s41467-026-70413-3",
+        "preprint": null,
+        "preprintdoi": null,
+        "news": null,
+        "pdf": "/pdfs/Li2026-rg.pdf",
+        "oa": 1,
+        "submitted": 0
+    }, 
+    {
         "title": "Pre-exposure of abundant species to disturbance improves resilience in microbial metacommunities",
         "authors": "Cairns J, <u>Hogle SL</u>, <u>Alitupa E</u>, Mustonen V, Hiltunen T<sup>&#9671;</sup>",
         "journal": "Nature Ecology & Evolution",

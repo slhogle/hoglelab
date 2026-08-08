@@ -1,12 +1,6 @@
 [
   { "label": "Research", "url": "/research/" },
-  {
-    "label": "Publications",
-    "children": [
-      { "label": "Highlights", "url": "/publications_highlights/" },
-      { "label": "All publications", "url": "/publications_all/" }
-    ]
-  },
+  { "label": "Publications", "url": "/publications/" },
   { "label": "Team", "url": "/team/" },
   {
     "label": "About the lab",

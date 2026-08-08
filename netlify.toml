@@ -8,6 +8,15 @@
   # .nvmrc and the "engines" field in package.json.
   NODE_VERSION = "22"
 
+# The publications page was /publications_all/ while the Publications navbar
+# dropdown existed. The dropdown is gone and the page moved to /publications/;
+# this keeps inbound links to the old URL working. Rules are matched in order,
+# so specific redirects must stay above the catch-all 404 below.
+[[redirects]]
+  from = "/publications_all/*"
+  to = "/publications/"
+  status = 301
+
 # Eleventy writes 404.html at the site root (see src/404.njk permalink).
 # Netlify serves it automatically for unmatched paths, but this makes the
 # behaviour explicit and survives changes to Netlify's defaults.

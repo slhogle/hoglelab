@@ -1,78 +1,85 @@
 {
   "current": [
     {
-      "name": "Shane Hogle",
+      "name": "Shane L. Hogle",
       "pronouns": "he/him/his",
       "role": "Principal investigator",
-      "image": "/images/team/shane_1x1.png",
+      "image": "/images/team/shane_new.png",
       "alt": "Portrait of Shane Hogle",
       "bio": [
-        "Shane is a microbial evolutionary ecologist seeking to understand how microorganisms interact and evolve and how community interaction networks can change over time. He is particularly interested in how microbial ecological dynamics scale to influence entire ecosystems and biogeochemical cycles. His science links field observations and the synthesis of existing datasets with experimental manipulations of idealized model microbial model communities in the laboratory. Shane aspires to develop a mechanistic and quantitative understanding of microbial communities and microbial evolution. He draws from many academic disciplines, including microbiology, ecology, evolution, computational genomics, biogeochemistry, and molecular biology to pursue his research questions."
+        "Shane's research focuses on microbial community ecology, microbial evolution, and biogeochemistry. Shane aims to understand how microorganisms interact and evolve together, how microbial ecosystems change over time, and the consequences of these processes for ecosystem function. Work in his group links field observations and the synthesis of existing datasets with experimental manipulations of model microbial communities in the laboratory."
       ],
       "background": [
+        "Associate Professor, Environmental and Marine Biology, <a href=\"https://www.abo.fi/en/\">Åbo Akademi University</a>",
         "<a href=\"https://www.aka.fi/en/\">Research Council of Finland</a> Academy Research Fellow",
-        "Postdoctoral research <a href=\"https://www.utu.fi/en\">University of Turku</a>",
-        "Postdoctoral research <a href=\"https://www.mit.edu/\">Massachusetts Institute of Technology (MIT)</a>",
-        "Ph.D. in Oceanography from <a href=\"https://ucsd.edu/\">UCSD</a>",
-        "B.A. in Chemistry from <a href=\"https://earlham.edu/\">Earlham College</a>"
+        "Postdoctoral research, <a href=\"https://www.utu.fi/en\">University of Turku</a>",
+        "Postdoctoral research, <a href=\"https://www.mit.edu/\">MIT</a>",
+        "Ph.D., Oceanography, <a href=\"https://ucsd.edu/\">UCSD</a>",
+        "B.A., Chemistry, <a href=\"https://earlham.edu/\">Earlham College</a>" 
       ],
       "links": [
         { "icon": "fa fa-envelope", "url": "mailto:shane.hogle@utu.fi", "label": "Email" },
         { "icon": "fa-brands fa-github", "url": "https://github.com/slhogle", "label": "Github" },
         { "icon": "ai ai-google-scholar", "url": "https://scholar.google.com/citations?hl=en&user=WKVJzbgAAAAJ&view_op=list_works&sortby=pubdate", "label": "Google Scholar" },
-        { "icon": "ai ai-orcid", "url": "https://orcid.org/0000-0003-2595-3863", "label": "ORCID: 0000-0003-2595-3863" },
-        { "icon": "ai ai-researchgate", "url": "https://www.researchgate.net/profile/Shane-Hogle", "label": "ResearchGate" },
-        { "icon": "ai ai-researcherid", "url": "https://www.webofscience.com/wos/author/record/AAT-8166-2020", "label": "ResearcherID: AAT-8166-2020" }
+        { "icon": "ai ai-orcid", "url": "https://orcid.org/0000-0003-2595-3863", "label": "0000-0003-2595-3863" },
+        { "icon": "ai ai-researchgate", "url": "https://www.researchgate.net/profile/Shane-Hogle", "label": "ResearchGate" }
       ]
     },
     {
       "name": "Milla Similä",
       "pronouns": "she/her/hers",
       "role": "Doctoral researcher",
-      "image": "/images/team/placeholder.svg",
+      "image": "/images/team/MillaSimila.jpg",
       "alt": "Placeholder portrait for Milla Similä",
       "bio": [
-        "Milla is a second year doctoral researcher in the Department of Biology at <a href=\"https://www.utu.fi/en\">University of Turku</a>. Her master’s thesis focused on bacterial coexistence under antibiotic stress. Her Ph.D. research interests center on microbial community ecology, with a particular focus on how microbial communities respond to environmental pressures and assemble within different ecosystems. Beyond community assembly, Milla is also fascinated by how microbes interact with one another and how these interactions shape the ecosystems they inhabit.",
-        "Currently, Milla is working with both synthetic and natural plant microbiomes, aiming to predict microbial community assembly and better understand how these communities are impacted by climate change."
+        "Milla is working with both synthetic and natural plant microbiomes, aiming to predict microbial community assembly and better understand how these communities are impacted by the host and its environment."
       ],
       "background": [
-        "M.Sc. in Physiology and Genetics (minor in statistics) from the <a href=\"https://www.utu.fi/en\">University of Turku</a>"
+        "M.Sc., Physiology and Genetics, <a href=\"https://www.helsinki.fi/en\">University of Turku</a>"
       ],
       "links": []
     },
     {
-      "name": "Sanna Pausio",
+      "name": "Niina Smolander",
       "pronouns": "she/her/hers",
-      "role": "Doctoral researcher",
-      "image": "/images/team/placeholder.svg",
-      "alt": "Placeholder portrait for Sanna Pausio",
+      "role": "Postdoctoral fellow",
+      "image": "/images/team/NiinaSmolander.jpg",
+      "alt": "Placeholder portrait for Niina Smolander",
       "bio": [
-        "Sanna is a first year doctoral researcher in the Department of Biology at <a href=\"https://www.utu.fi/en\">University of Turku</a> co-supervised with Teppo Hiltunen. Stay tuned to learn more about her research!"
+        "Niina is working on a project looking at the evolution of pangenomes in marine picocyanobacteria."
       ],
       "background": [
-        "M.Sc. in Ecology and Evolutionary Biology from the <a href=\"https://www.utu.fi/en\">University of Turku</a>"
+        "Ph.D., Physiology and Genetics, <a href=\"https://www.utu.fi/en\">University of Turku</a>",
+        "M.Sc., Physiology and Genetics, <a href=\"https://www.utu.fi/en\">University of Turku</a>"
       ],
       "links": []
     },
     {
-      "name": "Iina Nieminen",
+      "name": "Tuuli Korpinen",
       "pronouns": "she/her/hers",
-      "role": "Doctoral researcher",
+      "role": "Project researcher",
       "image": "/images/team/placeholder.svg",
-      "alt": "Placeholder portrait for Iina Nieminen",
+      "alt": "Placeholder portrait for Tuuli Korpinen",
       "bio": [
-        "Iina is a doctoral researcher in the <a href=\"https://www.helsinki.fi/en/faculty-agriculture-and-forestry/research/microbiology\">Department of Microbiology at the University of Helsinki</a> co-supervised with Teppo Hiltunen."
+        "Tuuli is a project researcher working on a little bit of everything, ranging from nematodes to plants!"
       ],
       "background": [
-        "M.Sc. <a href=\"https://www.helsinki.fi/en\">University of Helsinki</a>"
+        "M.Sc., Physiology and Genetics, <a href=\"https://www.helsinki.fi/en\">University of Turku</a>"
       ],
       "links": []
     }
   ],
   "former": [
     {
+      "heading": "Ph.D. Researchers",
+      "people": [
+        "<em>Sep 2025 - Aug 2026:</em> Huiyu Chuai, Nanjing Agricultural University. China Scholarship Council Visiting Ph.D. student."
+      ]
+    },
+    {
       "heading": "Masters Students",
       "people": [
+        "<em>Oct 2025 - May 2026:</em> Tuuli Korpinen, University of Turku (SLH main supervisor). Now a Project researcher at UTU.",
         "<em>May 2022 - Nov 2023:</em> Milla Similä, University of Turku (SLH main supervisor). Now a Ph.D. student at UTU.",
         "<em>Jan 2022 - Jun 2023:</em> Inga-Katariina Aapalampi, University of Turku (SLH main supervisor). Now a Ph.D. student at UTU",
         "<em>Nov 2021 - May 2023:</em> Olli Pitkänen, University of Turku (SLH main supervisor). Now Chief Development Officer at PrecisionPhageU",
@@ -90,9 +97,10 @@
   ],
   "collaborators": [
     "<a href=\"https://www.clsong.com/\"><b>Chuliang Song</b></a>, University of California, Los Angeles",
-    "<a href=\"https://amob.github.io/\"><b>Anna O'Brien</b></a>, University of New Hampshire",
+    "<a href=\"https://andrewletten.github.io/\"><b>Andrew Letten</b></a>, Unviersity of Queensland, Australia",
+    "<b>Ting Liu</b>, Nanjing Agricultural University, China",
+    "<b>Zhong Wei</b>, Nanjing Agricultural University, China",
     "<a href=\"https://rogierbraakman.com/\"><b>Rogier Braakman</b></a>, MIT",
-    "<a href=\"https://www.expevo.org/\"><b>Teppo Hiltunen</b></a>, University of Turku",
     "<a href=\"https://www.tamminenlab.org/\"><b>Manu Tamminen</b></a>, University of Turku"
   ]
 }
