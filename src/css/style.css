@@ -1,9 +1,18 @@
-@import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css";
+/* Bulma is loaded via a <link> in _includes/layouts/base.njk rather than an
+   @import here, so it is not stuck behind a second serial round trip. */
 
 .tabs ul {
     flex-shrink: 1;
     flex-wrap: wrap;
     border-bottom-color: transparent;
+}
+
+/* The image transform plugin writes explicit width/height attributes onto every
+   <img>. Without height:auto those attributes win over the layout and distort
+   the aspect ratio. */
+img {
+    max-width: 100%;
+    height: auto;
 }
 
 .image img {
@@ -13,9 +22,11 @@
     max-height: 100%;
 }
 
+/* max-* rather than fixed width/height: this rule is now actually reachable
+   from the templates, and a hard 320px would overflow narrow columns. */
 .image.is-320x320 {
-    height: 320px;
-    width: 320px;
+    max-height: 320px;
+    max-width: 320px;
 }
 
 .footer {

@@ -1,0 +1,21 @@
+[
+  { "label": "Research", "url": "/research/" },
+  {
+    "label": "Publications",
+    "children": [
+      { "label": "Highlights", "url": "/publications_highlights/" },
+      { "label": "All publications", "url": "/publications_all/" }
+    ]
+  },
+  { "label": "Team", "url": "/team/" },
+  {
+    "label": "About the lab",
+    "children": [
+      { "label": "Lab philosophy. policies, and expectations", "url": "/philosophy/" },
+      { "label": "Diversity, equity, and inclusion", "url": "/dei/" },
+      { "label": "Code of conduct", "url": "/coc/" },
+      { "label": "Visit us", "url": "/visit/" }
+    ]
+  },
+  { "label": "Join!", "url": "/join/" }
+]

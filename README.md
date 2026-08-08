@@ -32,94 +32,93 @@ webpage. You will need to install it first to use my template.
 
 ### 1. Install Node.js
 [Node.js](https://nodejs.org/en) is a javascript runtime environment. You will need Node.js to
-install Eleventy. Some operating systems come with Node.js preinstalled but I recommend installing
-the latest version from the [Node.js webpage.](https://nodejs.org/en/download/package-manager). If
-you use Ubuntu I have already gone through this process - see below (YMMV):
+install Eleventy.
 
+**This site requires Node.js 22 or newer.** That floor comes from
+[`@11ty/eleventy-img`](https://www.11ty.dev/docs/plugins/image/) v7, which is used to optimise
+images at build time. The required version is recorded in three places that must stay in sync:
+`.nvmrc`, the `engines` field of `package.json`, and `NODE_VERSION` in `netlify.toml`.
 
-#### Dealing with Node.js on Ubuntu
-The version of node that comes bundled with Ubuntu is old (in 2023 v12 when stable is v18). The system nodejs must be removed and then updated. This is how I did it in July 2023
+The version of Node bundled with your Linux distribution is usually too old. On Ubuntu, install a
+current release from [NodeSource](https://nodesource.com/):
+
 
 ```sh
-# remove package source
-cd /etc/apt/sources.list.d 
-sudo rm nodesource.list
-
-# fix the install, update apt
-sudo apt-get --fix-broken install
-sudo apt-get update
-
-# remove libnode-dev, nodejs and the nodejs-doc packages
-sudo apt-get remove libnode-dev
-sudo apt-get remove libnode72:amd64
-sudo apt-get remove nodejs
-sudo apt-get remove nodejs-doc
-```
-
-Then I installed the current long-term support NodeJS (18.16.1) using [NodeSource](https://nodesource.com/) and [instructions here](https://github.com/nodesource/distributions#using-ubuntu-2)
-
-```sh
-curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+curl -fsSL https://deb.nodesource.com/setup_24.x | sudo -E bash -
 sudo apt-get install -y nodejs
+node --version   # should print v24.x or newer
 ```
 
-### 2. Install Eleventy locally
-You may  install Eleventy globally but the package.json installation method below is recommended.
-This will allow you to install a single version of Eleventy into the repository for your lab
-website, and you won't have to worry so much about subsequent updates breaking your webpage.
-
-You first need a `package.json` file. *If you downloaded this git repo then there is already one
-included, but you may want to change a bit of the content.* If you are starting from scratch, the npm command (provided by Node.js) will create one for you with `npm init -y`. -y tells
-npm to use default values and skips the command line questionnaire.
-
-Next install Eleventy. @11ty/eleventy is published on npm and we can install and save it into our project’s package.json by running:
+Alternatively use a version manager such as [nvm](https://github.com/nvm-sh/nvm), which will pick
+up the `.nvmrc` file automatically:
 
 ```sh
-npm install @11ty/eleventy --save-dev
+nvm install
+nvm use
 ```
 
-This now installs a local version of Eleventy in our project.
+### 2. Install the dependencies
 
-### 3. Run Eleventy 
-We can use the `npx` command (also provided by Node.js) to run our local project's version of Eleventy. Let’s make sure our installation went okay and try to run Eleventy:
+Eleventy is installed locally into this project rather than globally, so the site always builds
+against a known version. Everything is already declared in `package.json`; you just need:
 
 ```sh
-npx @11ty/eleventy
+npm install
 ```
 
-Here’s what your command line might look like after you run Eleventy:
+This pulls in Eleventy, `@11ty/eleventy-img` (which compiles a native `sharp` binary, so the first
+install takes a minute), and `markdown-it`.
 
-```
-[11ty] Wrote 0 files in 0.03 seconds (v2.0.1)
-```
-
-### 4. Serve a site
-
-Now you can serve the content in the repo to a browser and preview the content using at `http://localhost:`
+### 3. Build and preview
 
 ```sh
-npx @11ty/eleventy --serve
+npm run build    # build once into public/
+npm start        # build, serve at http://localhost:8080, and rebuild on save
 ```
 
-Using the command `npx` uses the local Eleventy dependency and not global. The --serve flag in our terminal command instructs Eleventy to serve the dist folder with a local web server and also watch for any file changes. This means that if you change the content of index.md and refresh your browser: you should see the new content.
+`npm start` watches the `src` directory and reloads the browser when you change a template, a data
+file, or an image.
 
 ## Make the webpage yours
 
-News, publication content, and general site content is in the `_data` directory. You will need to
-edit these files with the content from your lab.
+Almost all of the content lives in JSON files in `src/_data/`, so routine updates are data edits
+rather than HTML edits:
 
-`_includes` contains general layouts used by Eleventy to structure the website
+| File | What it drives |
+| --- | --- |
+| `site.json` | Site title, canonical URL, description, and your scholarly profile links |
+| `nav.json` | The navigation bar, including dropdown menus |
+| `news.json` | News items (newest first). Headlines accept markdown |
+| `bib.json` | Publications and preprints (newest first) |
+| `team.json` | Current members, former members, and collaborators |
+| `highlights.json` | The research highlights on the Publication highlights page |
 
-If you want your own site favicon you can visit a [site like
-this](https://realfavicongenerator.net/) and create all the necessary favicon files. Replace the content of
-`favicons` with your content.
+Each of `bib`, `team`, and `highlights` has a matching `*_format_example.json` documenting the
+expected fields. Those example files are never rendered; they exist purely as a reference.
 
-`images` contains the images for your webpage.
+The remaining directories:
 
-`pdfs` contains copies of the pdf files you want to provide on your page.
+- `src/_includes` — the shared layout, navbar, footer, and the publication macro
+- `src/favicons` — replace with your own from a generator such as [realfavicongenerator.net](https://realfavicongenerator.net/); the contents are copied to the site root
+- `src/images` — images. Only images actually referenced by an `<img>` tag are built and deployed, so unused files here cost nothing at deploy time
+- `src/pdfs` — PDF copies of your publications, linked from `bib.json`
+- `src/css/style.css` — overrides layered on top of Bulma
 
-`index.njk` is the landing page for your site. The other pages should be more or less self
-explanatory from their titles. To edit these pages you will need to use some basic HTML formatting.
+`src/index.njk` is the landing page. The other pages are named after their URLs. Editing those
+requires some basic HTML.
+
+### A note on images
+
+You do not need to resize or convert images by hand. Write a plain tag with meaningful alt text:
+
+```html
+<img src="/images/example.png" alt="What the image shows">
+```
+
+At build time the [Eleventy Image transform](https://www.11ty.dev/docs/plugins/image/) rewrites it
+into a `<picture>` element with AVIF, WebP, and JPEG sources at several widths, and adds
+`width`/`height` and lazy loading. Animated GIFs are the exception — add `eleventy:ignore` to those
+so they are copied verbatim instead of being flattened to a single frame.
 
 ## Host on Netlify
 
@@ -149,9 +148,10 @@ git push -u origin main
 - On Netlify click on the "Import from Git" button. Netlify will ask you to connect a Git provider.
 Choose GitHub and authorize Netlify to access your GitHub repositories. Choose the repository that
 holds your portfolio site. 
-- Netlify will detect that this is an Eleventy project and will ask you to confirm the basic build settings.
-- Make sure the build command is either npm run build or eleventy.
-- Under "Publish directory", enter public instead of _site.
+- The build command (`npm run build`), publish directory (`public`), and Node version are all
+declared in `netlify.toml`, so you can accept whatever Netlify proposes — the file wins. Pinning
+the Node version there matters: without it, Netlify's rolling default will eventually move past
+what the build expects and deploys will start failing for no apparent reason.
 - Now click the "Deploy site" button.
 - In a few moments Netlify will tell you that your site is live and give you a URL for it.
 

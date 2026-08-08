@@ -1,0 +1,65 @@
+{#
+    Renders one entry from src/_data/bib.json.
+
+    entry(pub, number, kind)
+      pub    – a record from bib.json
+      number – the display number, counted down so the newest entry is highest
+      kind   – "submitted" (preprint, keyed on preprintdoi) or
+               "published" (keyed on pubdoi, adds PDF and open-access badges)
+
+    Both variants previously existed as near-identical copies in
+    publications_all.njk; keep them in sync by editing only this macro.
+#}
+
+{% macro preprintLink(pub, pad) %}
+    {% if pub.preprint == "biorxiv" %}
+        <span class="icon-text">
+            <span class="icon{{ pad }}"><i class="ai ai-biorxiv"></i></span>
+            <span><a style="display:inline;" target="_blank" rel="noopener" href="https://www.biorxiv.org/content/{{ pub.preprintdoi }}">bioRxiv</a></span>
+        </span>
+    {% elif pub.preprint == "other" %}
+        <span class="icon-text">
+            <span class="icon{{ pad }}"><i class="ai ai-archive"></i></span>
+            <span><a style="display:inline;" target="_blank" rel="noopener" href="https://doi.org/{{ pub.preprintdoi }}">Preprint</a></span>
+        </span>
+    {% endif %}
+{% endmacro %}
+
+{% macro badges(doi) %}
+    <span class="altmetric-embed pl-3" data-badge-type="1" data-doi="{{ doi }}"></span>
+    <span class="__dimensions_badge_embed__ pb-3 pl-3" style="display:inline-block;" data-doi="{{ doi }}" data-style="large_rectangle" data-hide-zero-citations="true"></span>
+{% endmacro %}
+
+{% macro entry(pub, number, kind) %}
+{% set doi = pub.preprintdoi if kind == "submitted" else pub.pubdoi %}
+<div class="block">
+    <div class="block is-size-6">
+        <p class="is-size-6"><b>[{{ number }}] {{ pub.title }}</b></p>
+        <p class="is-size-6">{{ pub.authors | safe }}</p>
+        <p class="is-size-6"><em>{{ pub.journal }}</em> ({{ pub.year }}) <a target="_blank" rel="noopener" href="https://doi.org/{{ doi }}">doi: {{ doi }}</a></p>
+        <div class="block pt-2">
+            {% if kind == "published" %}
+                <span class="icon-text">
+                    <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                    <a style="display:inline-block;" target="_blank" rel="noopener" href="{{ pub.pdf }}">Get PDF</a>
+                </span>
+                {% if pub.oa == 1 %}
+                    <span class="icon-text has-text-success-dark">
+                        <span class="icon has-text-success-dark pl-3"><i class="ai ai-open-access"></i></span>
+                        <span>Open Access</span>
+                    </span>
+                {% else %}
+                    <span class="icon-text has-text-danger">
+                        <span class="icon has-text-danger pl-3"><i class="ai ai-closed-access"></i></span>
+                        <span>Closed Access</span>
+                    </span>
+                {% endif %}
+                {{ preprintLink(pub, " pl-3") }}
+            {% else %}
+                {{ preprintLink(pub, "") }}
+            {% endif %}
+            {{ badges(doi) }}
+        </div>
+    </div>
+</div>
+{% endmacro %}

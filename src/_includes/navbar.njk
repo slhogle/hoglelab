@@ -1,40 +1,34 @@
+{# Links come from src/_data/nav.json. Adding a page is a data edit, not a template edit. #}
 <div class="container is-max-widescreen">
-  <nav class="navbar is-spaced is-transparent has-shadow" role="navigation" aria-label="main navigation">
-      <div class="navbar-brand">
-          <a class="navbar-item" href="/"><strong>Hogle Lab @ University of Turku</strong></a>
-          {# data-target of navbar burger must be the id of the navbar-menu. in our case below  "navMenu" #}
-        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"  data-target="navMenu">
-            <span aria-hidden="true"></span>
-              <span aria-hidden="true"></span>
-              <span aria-hidden="true"></span>
-          </a>
-      </div>
-
-      <div class="navbar-menu" id="navMenu">
-        {# navbar-end ensures navbar items are on the right side #}
-        {# <div class="navbar-start"><!-- navbar items --></div> #}
-        <div class="navbar-end">
-          <a href="/research" class="navbar-item">Research</a>
-          {# <a href="/publications" class="navbar-item">Publications</a> #}
-          <div class="navbar-item has-dropdown is-hoverable">
-              <a class="navbar-link">Publications</a>
-                <div class="navbar-dropdown is-right is-boxed">
-                  <a href="/publications_highlights" class="navbar-item">Highlights</a>
-                  <a href="/publications_all" class="navbar-item">All publications</a>
-                </div>
-            </div>
-            <a href="/team" class="navbar-item">Team</a>
-            <div class="navbar-item has-dropdown is-hoverable">
-              <a class="navbar-link">About the lab</a>
-                <div class="navbar-dropdown is-right is-boxed">
-                  <a href="/philosophy" class="navbar-item">Lab philosophy. policies, and expectations</a>
-                  <a href="/dei" class="navbar-item">Diversity, equity, and inclusion</a>
-                  <a href="/coc" class="navbar-item">Code of conduct</a>
-                  <a href="/visit" class="navbar-item">Visit us</a>
-                </div>
-            </div>
-          <a href="/join" class="navbar-item">Join!</a>
+    <nav class="navbar is-spaced is-transparent has-shadow" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="/"><strong>Hogle Lab @ University of Turku</strong></a>
+            {# data-target of navbar burger must be the id of the navbar-menu. in our case below "navMenu" #}
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navMenu">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
         </div>
-      </div>
-  </nav>
-</nav>
+
+        <div class="navbar-menu" id="navMenu">
+            {# navbar-end ensures navbar items are on the right side #}
+            <div class="navbar-end">
+                {% for item in nav %}
+                    {% if item.children %}
+                        <div class="navbar-item has-dropdown is-hoverable">
+                            <a class="navbar-link">{{ item.label }}</a>
+                            <div class="navbar-dropdown is-right is-boxed">
+                                {% for child in item.children %}
+                                    <a href="{{ child.url }}" class="navbar-item{{ ' is-active' if page.url == child.url }}"{% if page.url == child.url %} aria-current="page"{% endif %}>{{ child.label }}</a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% else %}
+                        <a href="{{ item.url }}" class="navbar-item{{ ' is-active' if page.url == item.url }}"{% if page.url == item.url %} aria-current="page"{% endif %}>{{ item.label }}</a>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </nav>
+</div>

@@ -1,0 +1,41 @@
+{
+  "_comment": [
+    "Shape reference for team.json. This file is not rendered anywhere.",
+    "A member with a non-empty 'links' array renders in the two-column layout",
+    "(biography beside a Connect list); an empty 'links' array renders full width.",
+    "'bio' and 'background' entries may contain raw HTML - they are output with | safe.",
+    "'image' is resolved against src/, e.g. /images/team/name.jpg. Use",
+    "/images/team/placeholder.svg until a real portrait is available."
+  ],
+  "current": [
+    {
+      "name": "FULL NAME",
+      "pronouns": "they/them/theirs",
+      "role": "Doctoral researcher",
+      "image": "/images/team/placeholder.svg",
+      "alt": "Placeholder portrait for FULL NAME",
+      "bio": [
+        "First paragraph. May contain <a href=\"https://example.org\">links</a> and <em>emphasis</em>.",
+        "Optional second paragraph."
+      ],
+      "background": [
+        "M.Sc. in Something from the <a href=\"https://www.utu.fi/en\">University of Turku</a>"
+      ],
+      "links": [
+        { "icon": "fa fa-envelope", "url": "mailto:someone@utu.fi", "label": "Email" },
+        { "icon": "ai ai-orcid", "url": "https://orcid.org/0000-0000-0000-0000", "label": "ORCID" }
+      ]
+    }
+  ],
+  "former": [
+    {
+      "heading": "Masters Students",
+      "people": [
+        "<em>Jan 2020 - Dec 2021:</em> NAME, University of Turku (SLH main supervisor). Now somewhere else."
+      ]
+    }
+  ],
+  "collaborators": [
+    "<a href=\"https://example.org/\"><b>NAME</b></a>, Institution"
+  ]
+}

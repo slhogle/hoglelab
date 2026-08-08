@@ -1,140 +1,88 @@
 ---
-title: Team members
-layout: layouts/base.njk
+title: "Team members"
+description: "Current members, former students, and collaborators of the Hogle Lab at the University of Turku."
 ---
+{#
+    Rendered from src/_data/team.json. Members with a non-empty "links" array
+    get the two-column layout (biography beside a Connect list); members without
+    links get the full-width single-column layout.
+#}
 <section class="section">
     <div class="container is-max-widescreen">
         <div class="column">
             <p class="is-size-3 has-text-weight-bold mb-4">Current members</p>
             <p class="is-size-6 mb-4">Our team is comprised doctoral researchers, masters students, and advanced bachelor students. <a href="/join">Interested in joining?</a></p>
+
+            {% for member in team.current %}
             <hr>
             <div class="block">
                 <div class="columns">
                     <div class="column is-one-fifth">
                         <figure class="image is-square">
-                            <img class="is-rounded" src="/images/team/shane_1x1.png">
+                            <img class="is-rounded" src="{{ member.image }}" alt="{{ member.alt }}">
                         </figure>
                     </div>
                     <div class="column is-four-fifths">
-                        <p class="is-size-4 mb-4"><b>Shane Hogle</b> (he/him/his); Principal investigator</p>
+                        <p class="is-size-4 mb-4"><b>{{ member.name }}</b>{% if member.pronouns %} ({{ member.pronouns }}){% endif %}; {{ member.role }}</p>
+                        {% if member.links | length %}
                         <div class="columns">
                             <div class="column is-two-thirds">
-                                <p class="is-size-6 mt-4">Shane is a microbial evolutionary ecologist seeking to understand how microorganisms interact and evolve and how community interaction networks can change over time. He is particularly interested in how microbial ecological dynamics scale to influence entire ecosystems and biogeochemical cycles. His science links field observations and the synthesis of existing datasets with experimental manipulations of idealized model microbial model communities in the laboratory. Shane aspires to develop a mechanistic and quantitative understanding of microbial communities and microbial evolution. He draws from many academic disciplines, including microbiology, ecology, evolution, computational genomics, biogeochemistry, and molecular biology to pursue his research questions.</p>
-                                <p class="is-size-6 mt-3"><b>Background:</b>
-                                    <ul>
-                                        <li> &#8226; <a href="https://www.aka.fi/en/">Research Council of Finland</a> Academy Research Fellow
-                                        <li> &#8226; Postdoctoral research <a href="https://www.utu.fi/en">University of Turku</a>
-                                        <li> &#8226; Postdoctoral research <a href="https://www.mit.edu/">Massachusetts Institute of Technology (MIT)</a>
-                                        <li> &#8226; Ph.D. in Oceanography from <a href="https://ucsd.edu/">UCSD</a></li>
-                                        <li> &#8226; B.A. in Chemistry from <a href="https://earlham.edu/">Earlham College</a></li>
-                                    </ul>
-                                </p>
+                                {% for para in member.bio %}
+                                <p class="is-size-6 {{ 'mt-4' if loop.first else 'mt-3' }}">{{ para | safe }}</p>
+                                {% endfor %}
+                                <p class="is-size-6 mt-3"><b>Background:</b></p>
+                                <ul>
+                                    {% for item in member.background %}
+                                    <li> &#8226; {{ item | safe }}</li>
+                                    {% endfor %}
+                                </ul>
                             </div>
                             <div class="column is-one-third">
-                                <p class="is-size-6 mt-3"><b>Connect:</b>
-                                    <ul>
-                                    <li><span class="icon-text"><span class="icon"><i class="fa fa-envelope"></i></span><span><a style="display:inline;" target="_blank" href="mailto:shane.hogle@utu.fi">Email</a></span></span></li>
-                                    <li><span class="icon-text"><span class="icon"><i class="fa-brands fa-github"></i></span><span><a style="display:inline;" target="_blank" href="https://github.com/slhogle">Github</a></span></span></li>
-                                    <li><span class="icon-text"><span class="icon"><i class="ai ai-google-scholar"></i></span><span><a style="display:inline;" target="_blank" href="https://scholar.google.com/citations?hl=en&user=WKVJzbgAAAAJ&view_op=list_works&sortby=pubdate">Google Scholar</a></span></span></li>
-                                    <li><span class="icon-text"><span class="icon"><i class="ai ai-orcid"></i></span><span><a style="display:inline;" target="_blank" href="https://orcid.org/0000-0003-2595-3863">ORCID: 0000-0003-2595-3863</a></span></span></li>
-                                    <li><span class="icon-text"><span class="icon"><i class="ai ai-researchgate"></i></span><span><a style="display:inline;" target="_blank" href="https://www.researchgate.net/profile/Shane-Hogle">ResearchGate</a></span></span></li>
-                                    <li><span class="icon-text"><span class="icon"><i class="ai ai-researcherid"></i></span><span><a style="display:inline;" target="_blank" href="http://www.webofscience.com/wos/author/record/AAT-8166-2020">ResearcherID: AAT-8166-2020</a></span></span></li>
-                                    </ul>
-                                </p>
+                                <p class="is-size-6 mt-3"><b>Connect:</b></p>
+                                <ul>
+                                    {% for link in member.links %}
+                                    <li><span class="icon-text"><span class="icon"><i class="{{ link.icon }}"></i></span><span><a style="display:inline;" target="_blank" rel="noopener" href="{{ link.url }}">{{ link.label }}</a></span></span></li>
+                                    {% endfor %}
+                                </ul>
                             </div>
-                        </div>     
+                        </div>
+                        {% else %}
+                        {% for para in member.bio %}
+                        <p class="is-size-6 {{ '' if loop.first else 'mt-4' }}">{{ para | safe }}</p>
+                        {% endfor %}
+                        <p class="is-size-6 mt-3"><b>Background:</b></p>
+                        <ul>
+                            {% for item in member.background %}
+                            <li> &#8226; {{ item | safe }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
                     </div>
                 </div>
             </div>
-            <hr>
-            <div class="block">
-                <div class="columns">
-                    <div class="column is-one-fifth">
-                        <figure class="image is-square">
-                            <img class="is-rounded" src="https://bulma.io/assets/images/placeholders/256x256.png">
-                        </figure>
-                    </div>
-                    <div class="column is-four-fifths">
-                        <p class="is-size-4 mb-4"><b>Milla Similä</b> (she/her/hers); Doctoral researcher</p>
-                        <p class="is-size-6">Milla is a second year doctoral researcher in the Department of Biology at <a href="https://www.utu.fi/en">University of Turku</a>. Her master’s thesis focused on bacterial coexistence under antibiotic stress. Her Ph.D. research interests center on microbial community ecology, with a particular focus on how microbial communities respond to environmental pressures and assemble within different ecosystems. Beyond community assembly, Milla is also fascinated by how microbes interact with one another and how these interactions shape the ecosystems they inhabit.</p>
-                        <p class="is-size-6 mt-4">Currently, Milla is working with both synthetic and natural plant microbiomes, aiming to predict microbial community assembly and better understand how these communities are impacted by climate change.
-                        </p> 
-                        <p class="is-size-6 mt-3"><b>Background:</b>
-                            <ul>
-                                <li> &#8226; M.Sc. in Physiology and Genetics (minor in statistics) from the <a href="https://www.utu.fi/en">University of Turku</a></li>
-                            </ul>
-                         </p>
-                    </div>
-                </div>
-            </div>
-            <hr>
-            <div class="block">
-                <div class="columns">
-                    <div class="column is-one-fifth">
-                        <figure class="image is-square">
-                            <img class="is-rounded" src="https://bulma.io/assets/images/placeholders/256x256.png">
-                        </figure>
-                    </div>
-                    <div class="column is-four-fifths">
-                        <p class="is-size-4 mb-4"><b>Sanna Pausio</b> (she/her/hers); Doctoral researcher</p>
-                        <p class="is-size-6">Sanna is a first year doctoral researcher in the Department of Biology at <a href="https://www.utu.fi/en">University of Turku</a> co-supervised with Teppo Hiltunen. Stay tuned to learn more about her research!</p>
-                        <p class="is-size-6 mt-3"><b>Background:</b>
-                            <ul>
-                                <li> &#8226; M.Sc. in Ecology and Evolutionary Biology from the <a href="https://www.utu.fi/en">University of Turku</a></li>
-                            </ul>
-                         </p>
-                    </div>
-                </div>
-            </div>
-            <hr>
-            <div class="block">
-                <div class="columns">
-                    <div class="column is-one-fifth">
-                        <figure class="image is-square">
-                            <img class="is-rounded" src="https://bulma.io/assets/images/placeholders/256x256.png">
-                        </figure>
-                    </div>
-                    <div class="column is-four-fifths">
-                        <p class="is-size-4 mb-4"><b>Iina Nieminen</b> (she/her/hers); Doctoral researcher</p>
-                        <p class="is-size-6">Iina is a doctoral researcher in the <a href="https://www.helsinki.fi/en/faculty-agriculture-and-forestry/research/microbiology">Department of Microbiology at the University of Helsinki</a> co-supervised with Teppo Hiltunen.
-                        </p> 
-                        <p class="is-size-6 mt-3"><b>Background:</b>
-                            <ul>
-                                <li> &#8226; M.Sc. <a href="https://www.helsinki.fi/en">University of Helsinki</a></li>
-                            </ul>
-                         </p>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
+
             <hr>
             <p class="is-size-3 has-text-weight-bold mb-4">Former members</p>
-            <p class="is-size-5 has-text-weight-bold mb-4">Masters Students</p>
+            {% for group in team.former %}
+            <p class="is-size-5 has-text-weight-bold mb-4">{{ group.heading }}</p>
             <div class="content">
                 <ul>
-                    <li><em>May 2022 - Nov 2023:</em> Milla Similä, University of Turku (SLH main supervisor). Now a Ph.D. student at UTU.</li>
-                    <li><em>Jan 2022 - Jun 2023:</em> Inga-Katariina Aapalampi, University of Turku (SLH main supervisor). Now a Ph.D. student at UTU</li>
-                    <li><em>Nov 2021 - May 2023:</em> Olli Pitkänen, University of Turku (SLH main supervisor). Now Chief Development Officer at PrecisionPhageU</li>
-                    <li><em>Mar 2021 - Jun 2022:</em> Elizaveta Zakharova, University of Turku (SLH co-supervisor)</li>
-                    <li><em>Sep 2021 - Jun 2022:</em> Enni Liinoja, University of Turku (SLH co-supervisor)</li>
+                    {% for person in group.people %}
+                    <li>{{ person | safe }}</li>
+                    {% endfor %}
                 </ul>
             </div>
-            <p class="is-size-5 has-text-weight-bold mb-4">Bachelors Students</p>
-            <div class="content">
-                <ul>
-                    <li><em>Nov 2020 - Sep 2021:</em> Helene Helo, University of Turku (SLH co-supervisor)</li>
-                    <li><em>Nov 2020 - Sep 2021:</em> Inga-Katariina Lampinen, University of Turku (SLH co-supervisor)</li>
-                </ul>
-            </div>
+            {% endfor %}
+
             <hr>
             <p class="is-size-3 has-text-weight-bold mb-4">Collaborators</p>
             <p class="is-size-6 mb-4">Here are some great people with whom we have ongoing collaborations!</p>
             <div class="content">
                 <ul>
-                    <li><a href="https://www.clsong.com/"><b>Chuliang Song</b></a>, University of California, Los Angeles</li>
-                    <li><a href="https://amob.github.io/"><b>Anna O'Brien</b></a>, University of New Hampshire</li>
-                    <li><a href="https://rogierbraakman.com/"><b>Rogier Braakman</b></a>, MIT</li>
-                    <li><a href="https://www.expevo.org/"><b>Teppo Hiltunen</b></a>, University of Turku</li>
-                    <li><a href="https://www.tamminenlab.org/"><b>Manu Tamminen</b></a>, University of Turku</li>
+                    {% for person in team.collaborators %}
+                    <li>{{ person | safe }}</li>
+                    {% endfor %}
                 </ul>
             </div>
         </div>

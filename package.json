@@ -1,20 +1,28 @@
 {
   "name": "hoglelab_website",
-  "version": "1.0.0",
-  "description": "something",
-  "main": "index.js",
+  "version": "2.0.0",
+  "description": "Website for the Hogle Lab, Department of Biology, University of Turku",
+  "type": "module",
   "scripts": {
     "build": "eleventy",
     "start": "eleventy --serve"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "eleventy",
+    "11ty",
+    "research-lab",
+    "academic-website"
+  ],
+  "author": "Shane L. Hogle",
+  "license": "GPL-3.0-or-later",
+  "engines": {
+    "node": ">=22"
+  },
   "devDependencies": {
-    "@11ty/eleventy": "^2.0.1",
-    "markdown-it": "^13.0.1"
+    "@11ty/eleventy": "^3.1.6",
+    "markdown-it": "^14.1.0"
   },
   "dependencies": {
-    "@11ty/eleventy-img": "^3.1.0"
+    "@11ty/eleventy-img": "^7.0.0"
   }
 }

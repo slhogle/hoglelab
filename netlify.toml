@@ -1,0 +1,17 @@
+[build]
+  command = "npm run build"
+  publish = "public"
+
+[build.environment]
+  # Pinned so Netlify's rolling default Node version can never silently break a
+  # deploy. @11ty/eleventy-img v7 requires Node 22+; keep this in sync with
+  # .nvmrc and the "engines" field in package.json.
+  NODE_VERSION = "22"
+
+# Eleventy writes 404.html at the site root (see src/404.njk permalink).
+# Netlify serves it automatically for unmatched paths, but this makes the
+# behaviour explicit and survives changes to Netlify's defaults.
+[[redirects]]
+  from = "/*"
+  to = "/404.html"
+  status = 404

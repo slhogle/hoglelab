@@ -1,0 +1,23 @@
+[
+  {
+    "_comment": [
+      "Shape reference for highlights.json. This file is not rendered anywhere.",
+      "Order in the array is display order, top to bottom.",
+      "imageSide flips the figure between the left and right column.",
+      "imageColumn/textColumn are Bulma column widths and should complement each",
+      "other (is-half + is-half, or is-one-third + is-two-thirds).",
+      "imageRatio is any Bulma figure ratio: is-3by2, is-4by3, is-16by9, is-9by16.",
+      "'summary' and 'citation' may contain raw HTML - they are output with | safe."
+    ],
+    "title": "Short descriptive title of the highlight",
+    "summary": "A paragraph of plain-language summary. May contain <em>markup</em>.",
+    "citation": "<u>Author A</u>, Author B. 2025. Title of the paper. Journal 1:1-10.",
+    "doi": "10.1000/example",
+    "image": "/images/highlight01.png",
+    "alt": "Description of what the figure shows",
+    "imageSide": "left",
+    "imageRatio": "is-3by2",
+    "imageColumn": "is-half",
+    "textColumn": "is-half"
+  }
+]

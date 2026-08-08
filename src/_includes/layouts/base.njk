@@ -1,25 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ site.language }}">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {# site.url carries no trailing slash and page.url always starts with one. #}
+        {% set pageTitle = title + " | " + site.title if title else site.title %}
+        {% set pageDescription = description or site.description %}
+        {% set canonical = site.url + page.url %}
+        <title>{{ pageTitle }}</title>
+        <meta name="description" content="{{ pageDescription }}">
+        <link rel="canonical" href="{{ canonical }}">
+
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="{{ site.title }}">
+        <meta property="og:title" content="{{ pageTitle }}">
+        <meta property="og:description" content="{{ pageDescription }}">
+        <meta property="og:url" content="{{ canonical }}">
+        <meta property="og:image" content="{{ site.url }}/images/lab_logo.png">
+        <meta name="twitter:card" content="summary">
+
         <link rel="icon" href="/favicon.ico" sizes="any">
         <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+        {# Atkinson Hyperlegible is the family style.css actually applies; it is
+           designed for low-vision legibility. #}
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" >
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap">
+        {# Bulma is linked here rather than @import-ed from style.css so it does
+           not sit behind a second, serial round trip. It must load before
+           style.css, which overrides it. #}
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
         {# New FA v6.4.0 https://stackoverflow.com/a/71366563 #}
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
         {# Provides academicons #}
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-        <link rel="stylesheet" href="{{'/css/style.css' | url | safe}}">
-        {# Javascript for altmetric badges: https://badge-docs.altmetric.com/getting-started.html  #}
-        <script type='text/javascript' src='https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js'></script>
-        {# Javascript for Dimensions citation badges: https://badge-docs.altmetric.com/getting-started.html  #}
-        <script async src="https://badge.dimensions.ai/badge.js" charset="utf-8"></script>
-        <script src="/bundle.js"></script>
+        <link rel="stylesheet" href="/css/style.css">
 
-        <title>{{ title }}</title>
+        {# Citation badges are only meaningful on the publications pages, so
+           pages opt in with `badges: true` in their front matter. #}
+        {% if badges %}
+            {# https://badge-docs.altmetric.com/getting-started.html #}
+            <script async src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script>
+            <script async src="https://badge.dimensions.ai/badge.js" charset="utf-8"></script>
+        {% endif %}
+        <script src="/bundle.js" defer></script>
     </head>
     <body>
         <header class="header">
