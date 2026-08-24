@@ -1,6 +1,143 @@
 /* Bulma is loaded via a <link> in _includes/layouts/base.njk rather than an
    @import here, so it is not stuck behind a second serial round trip. */
 
+/* Body hyperlinks.
+
+   Bulma colours <a> from --bulma-link-text, which is a different token from
+   --bulma-link. That separation is what makes this surgical: --bulma-link
+   drives the news header bar, the current-page navbar item, the burger icon
+   and the dropdown arrow, and none of them move when only --bulma-link-text
+   is repointed.
+
+   Bulma 1.x does not change link colour on hover (only .breadcrumb consumes
+   --bulma-link-text-hover), so this one declaration is the whole change.
+   .button, .breadcrumb and .tabs also read --bulma-link-text, but none of the
+   three are used anywhere in src/.
+
+   --bulma-danger-40 is #CC0029: 5.83:1 on white, 5.07:1 on the news box. */
+:root,
+[data-theme=light] {
+    --bulma-link-text: var(--bulma-danger-25);
+}
+
+/* Links inside the news panel are a separate case. Bulma sets
+   `.message a:not(.button):not(.tag):not(.dropdown-item)` to `currentColor`
+   with an underline, deliberately, so message links stay legible on whatever
+   background the message carries. That means they inherit the panel's text
+   colour and ignore --bulma-link-text entirely.
+
+   This selector matches Bulma's own specificity and wins on source order. The
+   underline is left alone: it is what distinguishes these links from the body
+   copy around them. */
+.message a:not(.button):not(.tag):not(.dropdown-item) {
+    color: var(--bulma-danger-25);
+}
+
+/* News panel palette.
+
+   The panel is a Bulma `.message.is-link`, which points every one of its
+   colour tokens at the link palette: `.message` sets
+   color: hsl(--bulma-message-h, --bulma-message-s, --bulma-message-color-l),
+   and is-link aims all three at link. That is why the news text was blue —
+   the hue is shared with the header bar, so neutralising the text means
+   neutralising the whole panel, not just its lightness.
+
+   Repointing --bulma-message-h/s at the text palette is safe *because* every
+   dependent lightness is pinned below. Repointing the hue without doing that
+   is the failure mode: --bulma-message-color-l would still resolve against
+   the new hue and the text would end up the same colour as its background.
+
+   --bulma-message-header-color-l is the one that must not be forgotten. For
+   the blue bar it was --bulma-link-invert (near-white); left alone it would
+   put near-white "News" on a light grey header.
+
+   Contrast: body text 8.22:1, header text 7.28:1, red links 5.07:1.
+
+   The body surface stays --bulma-text-95 (#EEEFF2) — same colour as before,
+   now reached through the token rather than a background-color override, so
+   the whole panel is described in one place. */
+.news .message.is-link {
+    --bulma-message-h: var(--bulma-text-h);
+    --bulma-message-s: var(--bulma-text-s);
+
+    --bulma-message-background-l: var(--bulma-text-95-l);
+    --bulma-message-color-l: var(--bulma-text-l);
+
+    --bulma-message-header-background-l: var(--bulma-text-80-l);
+    --bulma-message-header-color-l: var(--bulma-text-l);
+
+    --bulma-message-border-l: var(--bulma-text-80-l);
+}
+
+/* Dropdown arrow.
+
+   The caret on "About the lab" is a CSS triangle: Bulma draws it as the border
+   of `.navbar-link:not(.is-arrowless):after` and colours it from
+   --bulma-navbar-dropdown-arrow, which defaults to var(--bulma-link). It is
+   not reachable through --bulma-link-text, the token that recoloured the body
+   copy, so it needs its own override.
+
+   Set on .navbar because that is the element Bulma declares the token on:
+   same specificity, wins on source order. */
+.navbar {
+    --bulma-navbar-dropdown-arrow: var(--bulma-text);
+}
+
+/* Navbar items never paint a filled background.
+
+   Bulma 1.x draws the navbar item background through an alpha custom property
+   that sits at 0 by default and flips to 1 on :hover, :focus, :active and
+   .is-active. `.navbar.is-transparent` zeroes that alpha as well, but only at
+   the navbar level: the item rules re-set it on the item itself and therefore
+   win, which is why the current page still rendered as a filled blue pill.
+   Zeroing it per item is what actually holds.
+
+   .is-active additionally repoints the item hue at --bulma-link and sets the
+   text to --bulma-link-invert, which is near-white. Removing only the
+   background would leave white text on a white navbar, so the rule below
+   re-colours the current page to the link blue instead: same affordance as the
+   pill, no background. `aria-current="page"` in navbar.njk carries the
+   semantics either way. */
+.navbar-link,
+.navbar-link:hover,
+.navbar-link:focus,
+.navbar-link:focus-within,
+.navbar-link:active,
+.navbar-link.is-active,
+.navbar a.navbar-item,
+.navbar a.navbar-item:hover,
+.navbar a.navbar-item:focus,
+.navbar a.navbar-item:focus-within,
+.navbar a.navbar-item:active,
+.navbar a.navbar-item.is-active,
+.navbar a.navbar-item.is-selected {
+    --bulma-navbar-item-background-a: 0;
+    background-color: transparent;
+}
+
+.navbar a.navbar-item.is-active,
+.navbar a.navbar-item.is-selected,
+.navbar .navbar-link.is-active {
+    color: var(--bulma-danger-25);
+}
+
+/* Dropdown items need their own rule. Bulma paints them through
+   `.navbar.is-transparent .navbar-dropdown a.navbar-item`, which uses an opaque
+   hsl() with no alpha channel, so zeroing --bulma-navbar-item-background-a
+   above does nothing here. These selectors mirror Bulma's own specificity and
+   win on source order, style.css being loaded after Bulma.
+
+   Only the current item is cleared. Un-selected dropdown items keep the tint
+   they inherit from the panel, including the subtle grey on hover, which is the
+   only pointer feedback a dropdown list has. */
+.navbar .navbar-dropdown a.navbar-item.is-active,
+.navbar .navbar-dropdown a.navbar-item.is-selected,
+.navbar.is-transparent .navbar-dropdown a.navbar-item.is-active,
+.navbar.is-transparent .navbar-dropdown a.navbar-item.is-selected {
+    background-color: transparent;
+    color: var(--bulma-danger-25);
+}
+
 .tabs ul {
     flex-shrink: 1;
     flex-wrap: wrap;
@@ -36,4 +173,45 @@ img {
 body {
     font-family: 'Atkinson Hyperlegible', sans-serif;
     padding: 20px;
+}
+
+/* Funder and institution logos: the funding pair on the home page, the two
+   university marks in the footer.
+
+   Every logo is sized by its own max-height rule below. They need individual
+   caps because the marks differ both in aspect ratio (5.9:1 for Sakari Alhopuro
+   down to 1:1 for Åbo Akademi) and in how much of their height is lettering, so
+   one shared cap leaves some wordmarks unreadable and others dominant.
+
+   width:auto is the part that must stay: it keeps each logo on its own aspect
+   ratio against the width/height attributes the image transform plugin writes.
+   The max-height here only catches a logo added without its own class. */
+.org-logo {
+    width: auto;
+    max-height: 3.05rem;
+}
+
+.org-logo.is-rcf {
+    max-height: 3.5rem;
+}
+
+.org-logo.is-saf {
+    max-height: 3.0rem;
+}
+
+.org-logo.is-AA {
+    max-height: 6.5rem;
+}
+
+.org-logo.is-UTU {
+    max-height: 3.0rem;
+}
+
+/* A pair of logos side by side. They wrap rather than overflow once the column
+   is too narrow to hold both, which is what happens on tablet and phone. */
+.logo-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 2.25rem;
 }
